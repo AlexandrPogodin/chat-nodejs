@@ -22,16 +22,19 @@
         <h1 class="text-center">Чат</h1>
         <p class="text-center">Укижате имя и начинайте переписку</p>
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="col-md-6 mt-2">
                 <h2 class="text-center">Форма сообщения</h2>
                 <form id="msgForm">
+                    <label for="name">Имя</label>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Введите имя">
+                    <br>
                     <label for="msg">Сообщение</label>
                     <textarea name="msg" id="msg" class="form-control" placeholder="Введите сообщение"></textarea>
                     <br>
                     <input type="submit" value="Отправить" class="btn btn-primary btn-lg">
                 </form>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 mt-2">
                 <h2 class="text-center">Сообщения</h2>
                 <div class="all-msgs" id="all-msgs"></div>
             </div>
@@ -57,17 +60,21 @@
         $(function () {
             const socket = io.connect();
             const $form = $('#msgForm');
+            const $name = $('#name');
             const $msg = $('#msg');
             const $allMsgs = $('#all-msgs');
 
             $form.submit(event => {
                 event.preventDefault();
-                socket.emit('send msg', $msg.val());
+                socket.emit('send msg', {
+                    name: $name.val(),
+                    msg: $msg.val()
+                });
                 $msg.val('');
             });
 
             socket.on('add msg', (data) => {
-                $allMsgs.append("<div>" + data.msg + "</div>");
+                $allMsgs.append(`<div><b>${data.name}:</b> ${data.msg} </div>`);
             });
 
         })
