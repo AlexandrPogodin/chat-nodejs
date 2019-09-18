@@ -1,0 +1,25 @@
+{
+  "name": "chat-nodejs",
+  "version": "1.0.0",
+  "description": "Chat on NodeJS & Socket.io",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index",
+    "prod": "node index"
+  },
+  "keywords": [
+    "chat",
+    "nodejs",
+    "socketio"
+  ],
+  "author": "Alexandr Pogodin <awpogodin@mail.ru> (dev-pogodin.ru)",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  }
+}
