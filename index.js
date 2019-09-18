@@ -3,7 +3,10 @@ const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io").listen(server);
 
-server.listen(3000);
+const port = 3000;
+
+server.listen(port);
+console.log(`Server has been started on localhost:${port}`);
 
 app.get("/", (request, response) => {
   response.sendFile(__dirname + "/index.html");
