@@ -5,6 +5,7 @@ const io = require("socket.io").listen(server);
 
 const port = 3000;
 
+
 server.listen(port);
 console.log(`Server has been started on localhost:${port}`);
 
@@ -25,6 +26,9 @@ io.sockets.on("connection", socket => {
   });
 
   socket.on("send msg", data => {
-    io.sockets.emit("add msg", { name: data.name, msg: data.msg });
+    io.sockets.emit("add msg", {
+      name: data.name,
+      msg: data.msg
+    });
   });
 });
